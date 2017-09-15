@@ -1,0 +1,6 @@
+*, ul{ box-sizing:border-box; margin:0; padding:0; font-family:"Trebuchet MS"; list-style:none; }
+
+form{ margin: 5% auto; width: 20%; border: solid thin #f1f1f1; padding: 10px; box-shadow: 2px 2px 8px #f1f1f1;}
+form input[type=text], input[type=password] { color: #666; width: 100%; padding: 15px; border: solid thin #f1f1f1; outline: none; margin-bottom: 10px;}
+form .send { padding: 15px; color: #fff; text-align: center; background: tomato; border: none; width: 100%; }
+form .logo { padding: 50px 0; width: 100%; }

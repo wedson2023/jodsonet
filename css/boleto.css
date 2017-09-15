@@ -1,0 +1,38 @@
+*, ul{ box-sizing:border-box; margin:0; padding:0; font-family:"Trebuchet MS"; list-style:none; }
+.corpo { overflow: hidden; }
+
+	/***************************
+	**** PÁGINA CADASTRO *****
+	***************************/
+
+section.conteiner{ margin: auto; width: 60%; border: solid thin #f1f1f1; padding: 10px; box-shadow: 2px 2px 8px #f1f1f1;}
+section.cadastro article { display: flex; justify-content: space-between; }
+section.cadastro fieldset { display: flex; padding: 10px; border: solid thin #f1f1f1; width: 49.5%;}
+section.cadastro legend { color: #999; padding: 0 5px; font-size: 0.8em;}
+section.cadastro input[type=text] { color: #666; width: 100%; padding: 10px; border: solid thin #f1f1f1; outline: none; margin-bottom: 10px;}
+section.cadastro select{ color: #666; width: 100%; padding: 10px; border: solid thin #f1f1f1; outline: none; margin-bottom: 10px;}
+section.cadastro .rua { width: 80% !important; margin-right: 10px;}
+section.cadastro .numero { width: 20% !important; }
+section.cadastro .plano { width: 60% !important; margin-right: 10px;}
+section.cadastro .desconto { width: 40% !important; }
+section.cadastro label { display: flex; }
+section.cadastro div { display: flex; justify-content: space-between;  padding-top: 10px;}
+section.cadastro .send { padding: 15px; color: #fff; text-align: center; background: tomato; border: none; width: 25%; }
+.logo { margin: 2% auto; width: 20%; display: block; }
+section.cadastro span#mensagem_cadastro_cliente { background: springgreen; color: #fff; padding: 12.5px; width: 74%; display: none; }
+
+	/***************************
+	**** PÁGINA PLANOS *****
+	***************************/
+
+nav { position: fixed; left: 0; top: 0; width: 4%; height: 100%; background: black;}
+nav a{display: block; padding: 10px; width: 100%; text-decoration: none; color: #fff; border-bottom: solid thin #999; }
+nav img:hover { transition-duration: 0.3s; transform: scale(1.2); }
+div#tela { background: black; opacity: 0.5; display: none; position: absolute; width: 100%; height: 100%; top: 0; z-index: 1; }
+form#jan_planos{ position: absolute; top: 10%; left: 50%; width: 30%; margin-left: -15%; border: solid thin #f1f1f1; padding: 10px; z-index: 2; background: #fff; display: none;}
+form#jan_planos input[type=text], input[type=number] { color: #666; width: 100%; padding: 15px; border: solid thin #f1f1f1; outline: none; margin-bottom: 10px; }
+form#jan_planos input[type=text], input[type=number] { color: #666; width: 100%; padding: 15px; border: solid thin #f1f1f1; outline: none; margin-bottom: 10px; }
+form#jan_planos .send { padding: 15px; color: #fff; text-align: center; background: tomato; border: none; width: 100%; }
+form#jan_planos fieldset { display: flex; padding: 10px; border: solid thin #f1f1f1; width: 100%;}
+form#jan_planos legend { color: #999; padding: 0 5px; font-size: 0.8em;}
+form#jan_planos span#mensagem_cadastro_planos { text-align: center; margin-top: 10px; background: springgreen; color: #fff; padding: 15px; width:100%; display: none;  }
