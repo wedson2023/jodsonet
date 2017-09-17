@@ -38,8 +38,10 @@
 <script src="../js/module.js"></script>
 <script src="../js/rotas.js"></script>
 <script src="../js/factory.js"></script>
+<script src="../js/directive.js"></script>
 <script src="../js/singleCtrl.js"></script>
 <script src="../js/cadClienteCtrl.js"></script>
+<script src="../js/altClienteCtrl.js"></script>
 <script src="../js/listClienteCtrl.js"></script>
 </body>
 </html>

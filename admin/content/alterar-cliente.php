@@ -1,5 +1,5 @@
 	<section class="cadastro conteiner animated bounceInUp">
-		<form class="formulario" ng-submit="ctrl.cadastrar(ctrl.cadastro)">
+		<form class="formulario" ng-submit="ctrl.alterar(ctrl.cadastro)">
 		<article>			
 			<fieldset>
 				<legend>Informações Pessoais</legend>				
@@ -44,7 +44,7 @@
 			</fieldset>
 		</article>
 		<div>
-			<input type="submit" class="send" value="Cadastrar" />
+			<input type="submit" class="send" value="Alterar" />
 			<span id="mensagem_cadastro_cliente" class="mensagem animated fadeIn">Informações salvas com sucesso!</span>
 			</div>
 		</form>

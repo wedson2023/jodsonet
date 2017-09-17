@@ -1,47 +1,33 @@
-app.controller('listClienteCtrl', function($scope, http, $timeout, planos){
+app.controller('listClienteCtrl', function(http, clientes, $window, progresso){
 	var self = this;
 
-	self.planos = planos.data;
+	console.log(clientes.data)
+	self.clientes = clientes.data;
 
-	self.cpf = '999.999.999-99';
-	self.cep = '99999-999';
-	self.celular = '(99) 99999-9999';
+	progresso = progresso.create;
+	progresso.setColor('#15B9FF');
 
-	self.cadastro = {
-			nome : null,
-			apelido : null,
-			celular : null,
-			cpf : null,
-			cidade : null,
-			cep : null,
-			rua : null,
-			numero : null,
-			desconto : null,
-			plano : null,
-			bairro : null,
-		};
+	self.deletar = function(dados){
+		progresso.start();
+		dados.funcao = 'deletar_cliente';
+		var con = confirm('Tem certeza que deseja deletar esse cliente, todo o histórico dele será removido?');
+		if(con){
+			http.acesso(dados).then(function(response){
+				self.clientes.splice(self.clientes.indexOf(dados), 1);
+				progresso.complete();
+			}, function(err){
+				progresso.complete();
+				alert('Por favor verifique sua conexão com a internet ou tente novamente');
+			})					
+		}
+	}
 
-	self.cadastrar = function(dados){
-		console.log(dados)
-		dados.funcao = 'cadastrar_cliente';		
-		if(dados.desconto > 100){ alert('O campo desconto não pode ser maior que 100, coloque outro valor. :)'); return false; }
-		angular.element(document.getElementById('mensagem_cadastro_cliente')).fadeIn();
+	self.gerar = function(dados){
+		dados.funcao = 'gerar';
 		http.acesso(dados).then(function(response){
-			console.log(response.data)						
-			$timeout(function(){
-				self.cadastro.nome = null;
-				self.cadastro.apelido = null;
-				self.cadastro.celular = null;
-				self.cadastro.cpf = null;
-				self.cadastro.rua = null;
-				self.cadastro.numero = null;
-				self.cadastro.desconto = null;
-				self.cadastro.plano = null;
-				self.cadastro.bairro = null;
-				angular.element(document.getElementById('mensagem_cadastro_cliente')).fadeOut();	
-				}, 3500);
+			console.log(response)
 		}, function(err){
 			alert('Por favor verifique sua conexão com a internet ou tente novamente');
-		});	
+		})		
 	}
 })

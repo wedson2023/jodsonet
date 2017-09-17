@@ -13,8 +13,9 @@ class Clientes extends Create{
 	}
 
 	public function alterar(){
-		parent::ExeUpdate('clientes',  (array) $this->dados, 'WHERE id = :id', 'id=' . $this->dados->id);
-		$this->result = parent::getResult();
+		$up = new Update;
+		$up->ExeUpdate('clientes',  (array) $this->dados, 'WHERE id = :id', 'id=' . $this->dados->id);
+		$this->result = $up->getResult();
 	}
 
 	public function getResult(){
