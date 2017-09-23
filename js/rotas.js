@@ -1,6 +1,6 @@
 app.config(function($routeProvider, $locationProvider){
 		$routeProvider
-		.when('/cadastrar-cliente/', {
+		.when('/cadastrar-cliente', {
 			templateUrl: 'content/cadastrar-cliente.php',
 			controller: 'cadClienteCtrl as ctrl',
 			resolve: {
@@ -10,7 +10,7 @@ app.config(function($routeProvider, $locationProvider){
 				}
 			})
 
-		.when('/alterar-cliente/:id', {
+		.when('/alterar-cliente:id', {
 			templateUrl: 'content/alterar-cliente.php',
 			controller: 'altClienteCtrl as ctrl',
 			resolve: {

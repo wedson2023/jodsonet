@@ -28,7 +28,7 @@ switch ($dados->funcao) {
 
 	case 'ler_clientes':
 		$read = new Read;
-		$campos = 'clientes.id, clientes.nome, clientes.apelido, clientes.celular, clientes.cpf, clientes.desconto, clientes.cidade, clientes.cep, clientes.rua, clientes.numero, clientes.bairro, clientes.created_at, planos.valor';
+		$campos = 'clientes.id, clientes.nome, clientes.apelido, clientes.celular, clientes.cpf, clientes.desconto, clientes.cidade, clientes.cep, clientes.rua, clientes.numero, clientes.bairro, clientes.created_at, planos.valor, planos.plano';
 		$read->ExeRead('clientes inner join planos on clientes.plano = planos.id', null, null, $campos);
 		print json_encode($read->getResult());
 		break;

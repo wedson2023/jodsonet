@@ -5,7 +5,7 @@ app
 		restrict : 'A',
 		link : function(scope, element, attr){
 			element.click(function(){
-				$(this).children('span.informacoes').slideToggle().css('opacity', '1');
+				$(this).parent().parent().children('div.conteiner').slideToggle();
 			})
 		}
 

@@ -56,18 +56,21 @@ section.listar div.body .icon { width: 70%; }
 
 section.listar .deletar{ background: #4b7e9d; width: 50%; text-align: center; text-decoration: none; margin-right: 5px; border: none; color: #fff; padding: 5px; outline: none;}
 section.listar .alterar{ background: #4b7e9d; width: 50%; text-align: center; text-decoration: none; border: none; color: #fff; padding: 5px; outline: none;}
-section.listar .nome{  width: 25%; }
-section.listar .cidade{  width: 25%; }		
+section.listar .nome{  width: 22.5%; }
+section.listar .cidade{  width: 22.5%; }		
 section.listar .telefone{  width: 20%; }
 section.listar .plano{  width: 20%; }
 section.listar .valor{  width: 10%; }
-section.listar .informacoes{ display: none; width: 100%; text-align: left !important; display: flex; justify-content: space-between;}
+section.listar .down{  width: 5%; }
+section.listar .icon{  width: 60%; }
+section.listar div.conteiner{ display: none; width: 100%; }
+section.listar .informacoes{ width: 100%; text-align: left !important; display: flex; justify-content: space-between;}
 section.listar li{  font-size: 0.9em; margin-bottom: 5px; display: flex;}
 section.listar li p{ margin-left: 10px;}
-
 
 section.listar form { display: flex; justify-content: space-between; }
 section.listar ul:not(:last-child){ width:  40%; padding: 0 10px; }
 section.listar input{ width: 50%; }
-section.listar input[type=date]{ width: 70%; margin-right: 5px; color: #999; border: solid thin #ccc; outline: none; padding: 3px; }
-section.listar input[type=submit]{ width: 30%; color: #fff; background: tomato; border: none; outline: none; padding: 3px;}
+section.listar input[type=date]{ width: 33%; margin-right: 5px; color: #999; border: solid thin #ccc; outline: none; padding: 3px; }
+section.listar input[type=text]{ width: 33%; margin-right: 5px; color: #999; border: solid thin #ccc; outline: none; padding: 3px; }
+section.listar input[type=submit]{ width: 33%; color: #fff; background: tomato; border: none; outline: none; padding: 3px;}
