@@ -25,13 +25,11 @@ app.controller('listClienteCtrl', function(http, clientes, $window, progresso){
 	self.gerar = function(dados){
 		dados.funcao = 'gerar';
 		http.acesso(dados).then(function(response){
-			/*impressao = window.open('about:blank');
-			impressao.document.write(response.data.resposta);
+			impressao = window.open('about:blank');
+			impressao.document.write(response.data.mensagem);
 			impressao.window.print();
 			impressao.window.close();
-			return impressao;*/
-
-			console.log(response.data)
+			return impressao;
 		}, function(err){
 			alert('Por favor verifique sua conexão com a internet ou tente novamente');
 		})		

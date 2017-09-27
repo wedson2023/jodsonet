@@ -19,7 +19,7 @@ class Planos extends Create{
 
 	public function ler(){
 		$read = new Read;
-		$read->ExeRead('planos', null, null, 'id, nome');
+		$read->ExeRead('planos', null, null, 'id, plano');
 		$this->result = $read->getResult();
 	}
 
