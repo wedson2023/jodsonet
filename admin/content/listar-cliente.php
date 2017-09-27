@@ -36,8 +36,8 @@
 						</ul>
 						<ul>					
 							<li>
-								<form ng-submit="ctrl.gerar({ data : data, qtde : qtde })">
-									<input type="date" required ng-model="data"/>
+								<form ng-submit="ctrl.gerar({ vencimento : vencimento, qtde : qtde, cliente_id : cliente.id })">
+									<input type="date" required ng-model="vencimento"/>
 									<input type="text" required pattern="[0-9]+$" ng-model="qtde" ng-init="qtde = 6"/>
 									<input type="submit" value="Gerar" />
 								</form>

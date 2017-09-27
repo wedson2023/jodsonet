@@ -51,7 +51,7 @@ section.listar input[type=search] { color: #666; width: 100%; padding: 15px; bor
 section.listar div.header{ display: flex; flex-wrap: wrap; width: 100%; border: solid thin #f1f1f1; }
 section.listar div.header span{ text-align: center; font-size: 0.9em; border: solid thin #f1f1f1; padding: 5px; cursor: pointer; background: #4b7e9d; color: #fff;}
 section.listar div.body { display: flex; flex-wrap: wrap; width: 100%; border: solid thin #f1f1f1;}
-section.listar div.body span{ text-align: center; font-size: 0.9em; border: solid thin #f1f1f1; padding: 5px; color: #999; cursor: pointer; }
+section.listar div.body span{ text-align: center; font-size: 0.9em; border: solid thin #f1f1f1; padding: 5px; color: #999; cursor: default; }
 section.listar div.body .icon { width: 70%; }
 
 section.listar .deletar{ background: #4b7e9d; width: 50%; text-align: center; text-decoration: none; margin-right: 5px; border: none; color: #fff; padding: 5px; outline: none;}

@@ -54,11 +54,16 @@ switch ($dados->funcao) {
 		print json_encode($clientes->getResult());
 		break;
 
-
 	case 'deletar_cliente':
 		$del = new Delete;
 		$del->ExeDelete('clientes',  'WHERE id = :id', 'id=' . $dados->id);
 		print json_encode($del->getResult());
+		break;
+
+	case 'gerar':
+		$carne = new Carne($dados);
+		//$arq = file_get_contents('../boleto.html');
+		print json_encode($carne->getResult());	
 		break;
 
 	/***********************
