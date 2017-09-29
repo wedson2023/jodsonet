@@ -1,5 +1,8 @@
 	<section class="listar conteiner animated bounceInUp">
-		<input type="search" ng-model="pesquisar" placeholder="Digite um segmento" />
+		<div class="pesquisar">
+			<input type="search" class="nome" ng-model="nome" placeholder="Digite um nome" />
+			<input type="search" class="id" ng-model="id" placeholder="Digite um id" />
+		</div>
 		<div class="header">
 			<span class="capitalize nome">Nome</span>
 			<span class="capitalize cidade">Cidade</span>
@@ -9,7 +12,7 @@
 			<span class="capitalize down"><img class="icon" src="../imagens/down.png"></span>
 		</div>
 		<div id="clientes" class="clientes scroll">
-			<div class="body" ng-repeat="cliente in ctrl.clientes | filter : pesquisar">
+			<div class="body" ng-repeat="cliente in ctrl.clientes | filter : { nome : nome, id : id }">
 				<span class="capitalize nome" ng-bind="cliente.nome"></span>
 				<span class="capitalize cidade" ng-bind="cliente.cidade"></span>
 				<span class="capitalize telefone" ng-bind="cliente.celular"></span>

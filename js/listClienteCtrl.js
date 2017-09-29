@@ -1,7 +1,6 @@
 app.controller('listClienteCtrl', function(http, clientes, $window, progresso){
 	var self = this;
 
-	console.log(clientes.data)
 	self.clientes = clientes.data;
 
 	progresso = progresso.create;
@@ -25,11 +24,16 @@ app.controller('listClienteCtrl', function(http, clientes, $window, progresso){
 	self.gerar = function(dados){
 		dados.funcao = 'gerar';
 		http.acesso(dados).then(function(response){
-			impressao = window.open('about:blank');
-			impressao.document.write(response.data.mensagem);
-			impressao.window.print();
-			impressao.window.close();
-			return impressao;
+			console.log(response.data);
+			if(!response.data.resposta){ 
+				alert(response.data.mensagem);
+				}else{				
+				impressao = window.open('about:blank');
+				impressao.document.write(response.data.mensagem);
+				impressao.window.print();
+				impressao.window.close();
+				return impressao;
+			}
 		}, function(err){
 			alert('Por favor verifique sua conexão com a internet ou tente novamente');
 		})		

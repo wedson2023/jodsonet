@@ -10,8 +10,8 @@ if(isset($_SESSION['token'])):
 	$token = $_SESSION['token'];
 	$read->ExeRead('login', 'WHERE token = :token', 'token=' . $token);
 	if(!$read->getRowCount()):
-		header('Location: index.php');
+		header('Location: ../');
 	endif;
 	else:
-		header('Location: index.php');
+		header('Location: ../');
 endif;

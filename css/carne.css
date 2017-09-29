@@ -11,12 +11,16 @@ div.cliente { display: flex; flex-wrap: wrap; }
 div.cliente div.esquerda{ width: 70%; padding-right: 10px; }
 div.cliente div.direita{ width: 30%;  border-left: solid thin #000;}
 
+div.cliente .logo { border-bottom: solid thin #000; padding: 5px 0; }
+div.cliente .logo img { height: 30px; float: left }
+div.cliente .logo h1 { float: right; font-size: 1.3em !important; margin-top: 3px; }
+
 div.cliente div.esquerda div.local-pagamento { padding: 5px 0; width: 100%; border-bottom: solid thin #000;}
 div.cliente div.esquerda div.cedente { padding: 5px 0; width: 100%; border-bottom: solid thin #000;}
 div.cliente div.esquerda div.outros { width: 100%; display: flex; flex-wrap: wrap; border-bottom: solid thin #000; padding: 5px 0; }
 div.cliente div.outros div.processamento { width: 50%; border-right: dashed thin #000; padding-right: 5px;   }
 div.cliente div.outros div.numero-documento { width: 50%; padding-left: 10px;   }
-div.cliente div.esquerda div.instrucoes { padding: 5px 0 25px 0; width: 100%; border-bottom: solid thin #000;}
+div.cliente div.esquerda div.instrucoes { padding: 5px 0 13px 0; margin-bottom: 5px; width: 100%; border-bottom: solid thin #000;}
 div.cliente div.esquerda span { font-size: 0.8em;}
 
 div.cliente div.direita div, div.provedor div { padding: 5px; width: 100%; border-bottom: solid thin #000; font-size: 0.8em;}

@@ -3,12 +3,15 @@ class Carne extends Read{
 	private $dados;
 	private $lastDate;
 	private $cliente;
+	private $numero_documento;
+	private $qtde_carne;
 
 	public function __construct($dados){
 		$this->dados = Helpers::limpar($dados);
 		$this->dados->vencimento = date('Y-m-d', strtotime($this->dados->vencimento));
 
 		$this->cliente();
+		//$this->carne();
 		$this->validacao();
 	}
 
@@ -29,6 +32,16 @@ class Carne extends Read{
 		$this->cliente = parent::getResult()[0];
 	}
 
+	private function carne(){
+		$campos = 'MAX(numero) as numero_documento';
+		parent::ExeRead('carne', 'WHERE cliente_id = :cliente_id GROUP BY data', 'cliente_id=' . $this->dados->cliente_id, $campos);
+
+		$qtde = parent::getRowCount();
+
+		$this->qtde_carne = $qtde ? $qtde + 1 : 1;
+		$this->numero_documento = parent::getRowCount() ? parent::getResult()[$qtde - 1]->numero_documento + 1 : 1;
+	}
+
 	private function validacao(){
 		$this->vencimento();
 		if($this->dados->vencimento <= $this->lastDate['vencimento']):
@@ -36,6 +49,8 @@ class Carne extends Read{
 			elseif(date('m', strtotime($this->dados->vencimento)) <= date('m', strtotime($this->lastDate['vencimento']))):
 				$this->result = [ 'resposta' => false, 'mensagem' => 'Já existe um carne com vencimento para esse mês, coloque outra data ou remova o carne correpondente ao mês que vc deseja gerar um novo boleto, data do último carne foi ' . date('d/m/Y', strtotime($this->lastDate['vencimento'])) . '.' ];
 			else:
+			$this->carne();
+
 			$create = new Create;
 
 			$html = '<style>';
@@ -50,36 +65,42 @@ class Carne extends Read{
 				
 				$collection = [
 					'cliente_id' => $this->dados->cliente_id,
-					'vencimento' => $vencimento
+					'vencimento' => $vencimento,
+					'numero' => $this->numero_documento,
+					'data' => $this->dados->vencimento
 				];
 
-				//$create->ExeCreate('carne', $collection);
+				if($a >= 3 && ($a % 3) == 0):
+					$html .= '<br><br><br><br><br><br><br><br><br>';
+				endif;
 
-				$html .= $this->substituir($boleto, $this->cliente, $vencimento, 12);
-			endfor;
+				$html .= $this->substituir($boleto, $this->cliente, $vencimento, $this->numero_documento);
 
+				$create->ExeCreate('carne', $collection);
+				$this->numero_documento++;
+			endfor;			
 			$this->result = [ 'resposta' => true, 'mensagem' => $html ];
 		endif;
 	}
 
-	private function substituir($html, $dados, $vencimento, $carne){
+	private function substituir($html, $dados, $vencimento, $numero_documento){
 		$procurar = [ 
-			'#numero#', '#vencimento#', '#valor documento#', "#desconto#", '#valor cobrado#', '#nome#',
-			'#rua#', '#numero#', '#bairro#', '#cep#', '#data do documento#', '#numero do documento#' ];
+			'#numero#', '#digito#', '#numero do documento#', '#vencimento#', '#valor documento#', "#desconto#", '#nome#', '#rua#',
+			'#numero#','#bairro#', '#cep#', '#data do documento#', '#numero do documento#' ];
 		$substituir = [
 			$dados->id,
+			$this->qtde_carne,
+			$numero_documento,
 			date('d/m/Y', strtotime($vencimento)),
 			number_format($dados->valor, 2, ',', '.'),
-			number_format($dados->desconto, 2, ',', '.'),
-			number_format($dados->valor - $dados->desconto, 2, ',', '.'),
+			!is_null($dados->desconto) ? number_format($dados->desconto, 2, ',', '.') : '',
 			$dados->nome,
 			$dados->rua,
 			$dados->numero,
 			$dados->bairro,
 			$dados->cep,
 			date('d/m/Y'),
-			$carne
-
+			$numero_documento
 		];
 		return str_replace($procurar, $substituir, $html);
 	}

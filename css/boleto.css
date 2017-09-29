@@ -47,7 +47,9 @@ form#jan_planos span#mensagem_cadastro_planos { text-align: center; margin-top: 
 	***************************/
 
 section.listar div.clientes {  height: 250px; overflow-y: auto; overflow-x: hidden; }
-section.listar input[type=search] { color: #666; width: 100%; padding: 15px; border: solid thin #f1f1f1; outline: none; margin-bottom: 10px;}
+section.listar div.pesquisar { display: flex; flex-wrap: wrap; }
+section.listar input.nome { color: #666; width: 80%; padding: 15px; border: solid thin #f1f1f1; outline: none; margin-bottom: 10px;}
+section.listar input.id { color: #666; width: 20%; padding: 15px; border: solid thin #f1f1f1; outline: none; margin-bottom: 10px;}
 section.listar div.header{ display: flex; flex-wrap: wrap; width: 100%; border: solid thin #f1f1f1; }
 section.listar div.header span{ text-align: center; font-size: 0.9em; border: solid thin #f1f1f1; padding: 5px; cursor: pointer; background: #4b7e9d; color: #fff;}
 section.listar div.body { display: flex; flex-wrap: wrap; width: 100%; border: solid thin #f1f1f1;}

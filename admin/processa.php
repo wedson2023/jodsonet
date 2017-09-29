@@ -56,13 +56,12 @@ switch ($dados->funcao) {
 
 	case 'deletar_cliente':
 		$del = new Delete;
-		$del->ExeDelete('clientes',  'WHERE id = :id', 'id=' . $dados->id);
+		$del->ExeDelete('clientes',  'WHERE id = :id', 'id=' . Helpers::limpeza($dados->id));
 		print json_encode($del->getResult());
 		break;
 
 	case 'gerar':
 		$carne = new Carne($dados);
-		//$arq = file_get_contents('../boleto.html');
 		print json_encode($carne->getResult());	
 		break;
 
@@ -75,6 +74,12 @@ switch ($dados->funcao) {
 		$planos = new Planos($dados);
 		$planos->ler();
 		print json_encode($planos->getResult());
+		break;
+
+	case 'del_planos':
+		$del = new Delete;
+		$del->ExeDelete('planos', 'WHERE id = :id', 'id=' . Helpers::limpeza($dados->id));
+		print json_encode($del->getResult());
 		break;
 
 	case 'cadastrar_planos':

@@ -20,6 +20,18 @@
 		<input type="number" title="Valor do plano" placeholder="Valor do plano" required ng-model="ctrl.planos.valor" />
 		<input type="submit" class="send" value="Cadastrar" />
 		<span id="mensagem_cadastro_planos" class="animated fadeIn">Informações salvas com sucesso!</span>
+		<style>
+		form div.conteiner { width: 100%; height: 150px; padding: 5px; border: solid thin #f1f1f1; margin-top: 5px; overflow-x: hidden; overflow-y: auto;}
+		form div.lista { display: flex; flex-wrap: wrap; margin-bottom: 3px;}
+		form div.lista span.plano{ font-size: 0.9em; display: block; padding: 7px; width: 90%; font-size: #999; border: solid thin #f1f1f1; }
+		form div.lista span.deletar{ font-size: 0.9em; text-align: center; display: block; padding: 5px; width: 10%; font-size: #999; border: solid thin tomato; background: tomato; color: #fff; cursor: pointer;}
+		form div.lista span.deletar:hover{ border: solid thin red; background: red; }
+		</style>
+		<div class="conteiner scroll">
+			<div class="lista" ng-repeat="planos in ctrl.planos">
+				<span class="plano" ng-bind="planos.plano"></span><span class="deletar" ng-click="ctrl.excluir(planos)">x</span>
+			</div>
+		</div>
 	</fieldset>
 </form>
 <img src="../imagens/logo.png" class="logo animated fadeInLeftBig">

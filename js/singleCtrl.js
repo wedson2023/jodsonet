@@ -9,6 +9,22 @@ app.controller('singleCtrl', function($window, http, $timeout, progresso){
 		angular.element(document.getElementById('jan_planos')).fadeToggle(); 
 	}
 
+	http.acesso({ funcao : 'ler_planos' }).then(function(response){
+		console.log(response.data)
+		self.planos = response.data;
+	})
+
+	self.excluir = function(dados){
+		var con = confirm('tem certeza que deseja excluir esse plano?');
+		if(con){
+			dados.funcao = 'del_planos';
+			http.acesso(dados).then(function(response){
+				self.planos.splice(self.planos.indexOf(dados), 1);
+			})
+		}
+		
+	}
+
 	self.planos = {
 		nome : null,
 		valor : null
