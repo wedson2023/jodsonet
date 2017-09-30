@@ -10,11 +10,12 @@ app.controller('singleCtrl', function($window, http, $timeout, progresso){
 	}
 
 	http.acesso({ funcao : 'ler_planos' }).then(function(response){
-		console.log(response.data)
 		self.planos = response.data;
 	})
 
 	self.excluir = function(dados){
+		alert('Fale com o progrador antes de remover algum plano, esse plano pode esta ligado a um cliente e gerará erros.');
+		return false;
 		var con = confirm('tem certeza que deseja excluir esse plano?');
 		if(con){
 			dados.funcao = 'del_planos';
@@ -25,8 +26,8 @@ app.controller('singleCtrl', function($window, http, $timeout, progresso){
 		
 	}
 
-	self.planos = {
-		nome : null,
+	self.cad_planos = {
+		plano : null,
 		valor : null
 	};
 
@@ -43,16 +44,15 @@ app.controller('singleCtrl', function($window, http, $timeout, progresso){
 	}
 
 	self.cadastrar = function(dados){
-		console.log(dados);
 		progresso.start();	
 		dados.funcao = 'cadastrar_planos';
-
 		http.acesso(dados).then(function(response){
 			progresso.complete();
+			http.acesso({ funcao : 'ler_planos' }).then(function(response){
+				self.planos = response.data;
+			})
 			angular.element(document.getElementById('mensagem_cadastro_planos')).fadeIn();
 			$timeout(function(){
-				dados.nome = null;
-				dados.valor = null;
 				angular.element(document.getElementById('mensagem_cadastro_planos')).fadeOut();	
 				}, 3500);			
 		}, function(err){

@@ -19,7 +19,7 @@
 				<select class="plano" ng-options="planos.id as planos.plano for planos in ctrl.planos" required ng-model="ctrl.cadastro.plano">
 					<option value="">Selecione um plano</option>
 				</select>
-				<input type="text" class="desconto" pattern="[0-9]+$" title="Desconto" placeholder="% Desconto" ng-model="ctrl.cadastro.desconto"/>
+				<input type="text" class="desconto" pattern="[0-9]+$" title="Desconto" placeholder="R$ Desconto" ng-model="ctrl.cadastro.desconto"/>
 			</label>
 			</fieldset>
 			<fieldset>

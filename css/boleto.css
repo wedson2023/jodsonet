@@ -3,7 +3,7 @@
 .corpo { overflow: hidden; }
 
 .scroll::-webkit-scrollbar-track{-webkit-box-shadow: inset 0 0 6px #f1f1f1;	background-color: #F5F5F5;}
-.scroll::-webkit-scrollbar{width: 2px; background-color: #F5F5F5;}
+.scroll::-webkit-scrollbar{width: 5px; background-color: #F5F5F5;}
 .scroll::-webkit-scrollbar-thumb{background-color: #ccc;}
 
 	/***************************
@@ -41,6 +41,11 @@ form#jan_planos .send { padding: 15px; color: #fff; text-align: center; backgrou
 form#jan_planos fieldset { display: flex; padding: 10px; border: solid thin #f1f1f1; width: 100%;}
 form#jan_planos legend { color: #999; padding: 0 5px; font-size: 0.8em;}
 form#jan_planos span#mensagem_cadastro_planos { text-align: center; margin-top: 10px; background: springgreen; color: #fff; padding: 15px; width:100%; display: none;  }
+form div.conteiner { width: 100%; height: 150px; padding: 5px; border: solid thin #f1f1f1; margin-top: 5px; overflow-x: hidden; overflow-y: auto;}
+form div.lista { display: flex; flex-wrap: wrap; margin-bottom: 3px;}
+form div.lista span.plano{ font-size: 0.9em; display: block; padding: 7px; width: 90%; font-size: #999; border: solid thin #f1f1f1; }
+form div.lista span.deletar{ font-size: 0.9em; text-align: center; display: block; padding: 5px; width: 10%; font-size: #999; border: solid thin tomato; background: tomato; color: #fff; cursor: pointer;}
+form div.lista span.deletar:hover{ border: solid thin red; background: red; }
 
 	/***************************
 	***** LISTAR CLIENTES ******
@@ -58,12 +63,13 @@ section.listar div.body .icon { width: 70%; }
 
 section.listar .deletar{ background: #4b7e9d; width: 50%; text-align: center; text-decoration: none; margin-right: 5px; border: none; color: #fff; padding: 5px; outline: none;}
 section.listar .alterar{ background: #4b7e9d; width: 50%; text-align: center; text-decoration: none; border: none; color: #fff; padding: 5px; outline: none;}
-section.listar .nome{  width: 22.5%; }
-section.listar .cidade{  width: 22.5%; }		
+section.listar .nome{  width: 20%; }
+section.listar .cidade{  width: 20%; }		
 section.listar .telefone{  width: 20%; }
 section.listar .plano{  width: 20%; }
 section.listar .valor{  width: 10%; }
 section.listar .down{  width: 5%; }
+section.listar .via{  width: 5%; }
 section.listar .icon{  width: 60%; }
 section.listar div.conteiner{ display: none; width: 100%; }
 section.listar .informacoes{ width: 100%; text-align: left !important; display: flex; justify-content: space-between;}
@@ -76,3 +82,23 @@ section.listar input{ width: 50%; }
 section.listar input[type=date]{ width: 33%; margin-right: 5px; color: #999; border: solid thin #ccc; outline: none; padding: 3px; }
 section.listar input[type=text]{ width: 33%; margin-right: 5px; color: #999; border: solid thin #ccc; outline: none; padding: 3px; }
 section.listar input[type=submit]{ width: 33%; color: #fff; background: tomato; border: none; outline: none; padding: 3px;}
+
+div.carne { display: flex; flex-wrap: wrap; width: 100%;}
+div.carne span { padding: 5px; border: solid thin #f1f1f1; color: #ccc; text-align: center; margin-bottom: 3px;}
+div.carne .numero { width: 20%; }
+div.carne .vencimento { width: 30%; }
+div.carne .status { width: 20%; }
+div.carne .excluir { width: 15%; background: tomato; border: solid thin tomato !important; color: #fff !important; }
+div.carne .baixa { width: 15%; background: DodgerBlue; border: solid thin DodgerBlue !important; color: #fff !important; }
+
+div.listar_carne { display: flex; flex-wrap: wrap; width: 100%; cursor: default;}
+div.listar_carne span { padding: 5px; border: solid thin #f1f1f1; color: #ccc; text-align: center; margin-bottom: 3px;}
+div.listar_carne .nome { width: 20%; }
+div.listar_carne .numero { width: 15%; }
+div.listar_carne .vencimento { width: 20%; }
+div.listar_carne .status { width: 15%; }
+div.listar_carne .excluir { width: 15%; cursor: default; background: tomato; border: solid thin tomato !important; color: #fff !important; }
+div.listar_carne .baixa { width: 15%; cursor: default; background: DodgerBlue; border: solid thin DodgerBlue !important; color: #fff !important; }
+
+.pago{ color: green !important; }
+.atrasado{ color: tomato !important;} 

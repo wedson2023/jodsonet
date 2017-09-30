@@ -30,7 +30,17 @@ switch ($dados->funcao) {
 		$read = new Read;
 		$campos = 'clientes.id, clientes.nome, clientes.apelido, clientes.celular, clientes.cpf, clientes.desconto, clientes.cidade, clientes.cep, clientes.rua, clientes.numero, clientes.bairro, clientes.created_at, planos.valor, planos.plano';
 		$read->ExeRead('clientes inner join planos on clientes.plano = planos.id', null, null, $campos);
-		print json_encode($read->getResult());
+		if($read->getRowCount()):
+			foreach($read->getResult() as $dados):
+				$read->ExeRead('carne', 'WHERE cliente_id = :cliente_id', 'cliente_id=' . $dados->id );
+				if($read->getRowCount()):
+					$dados->carne = $read->getResult();
+				endif;
+				$clientes[] = $dados;
+			endforeach;
+			print json_encode($clientes);
+		endif;
+		
 		break;
 
 	case 'ler_cliente':
@@ -57,12 +67,45 @@ switch ($dados->funcao) {
 	case 'deletar_cliente':
 		$del = new Delete;
 		$del->ExeDelete('clientes',  'WHERE id = :id', 'id=' . Helpers::limpeza($dados->id));
+		$del->ExeDelete('carne',  'WHERE cliente_id = :cliente_id', 'cliente_id=' . Helpers::limpeza($dados->id));
 		print json_encode($del->getResult());
+		break;
+
+	/***********************
+	******** CARNE ********
+	***********************/
+
+	case 'ler_carne':
+		$read = new Read;
+		$campos = 'carne.id, clientes.nome, carne.numero, carne.vencimento, carne.status';
+		$read->ExeRead('carne inner join clientes on carne.cliente_id = clientes.id ORDER BY status DESC', null, null, $campos);
+		print json_encode($read->getResult());	
 		break;
 
 	case 'gerar':
 		$carne = new Carne($dados);
+		$carne->validacao();
 		print json_encode($carne->getResult());	
+		break;
+
+	case 'segunda_via':
+		$carne = new Carne($dados);
+		$carne->segunda_via();
+		print json_encode($carne->getResult());	
+		break;
+
+	case 'del_boleto':
+		$del = new Delete;
+		$del->ExeDelete('carne', 'WHERE id = :id', 'id=' . $dados->id);
+		print json_encode($del->getResult());	
+		break;
+
+	case 'dar_baixa':
+		$status = (int) $dados->status == 0 ? 1 : ( (int) $dados->status == 2 ? 1 : ( (int) $dados->status == 1 ? 2 : 0 ));
+
+		$up = new Update;
+		$up->ExeUpdate('carne', [ 'status' => $status ], 'WHERE id = :id', 'id=' . $dados->id);
+		print json_encode($up->getResult());	
 		break;
 
 	/***********************

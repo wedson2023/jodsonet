@@ -2,7 +2,7 @@ app.controller('cadClienteCtrl', function($scope, http, $timeout, planos){
 	var self = this;
 
 	self.planos = planos.data;
-	console.log(planos);
+
 	self.cpf = '999.999.999-99';
 	self.cep = '99999-999';
 	self.celular = '(99) 99999-9999';

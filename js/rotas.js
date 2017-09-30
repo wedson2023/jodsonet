@@ -29,6 +29,16 @@ app.config(function($routeProvider, $locationProvider){
 					}
 				}
 			})
+
+		.when('/listar-carne', {
+			templateUrl: 'content/listar-carne.php',
+			controller: 'listCarneCtrl as ctrl',
+			resolve: {
+				carne : function(http){
+					return http.acesso({ funcao : 'ler_carne' });
+					}
+				}
+			})
 						
 		.otherwise({
 			redirectTo : '/cadastrar-cliente'

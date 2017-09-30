@@ -7,12 +7,10 @@ class Carne extends Read{
 	private $qtde_carne;
 
 	public function __construct($dados){
-		$this->dados = Helpers::limpar($dados);
-		$this->dados->vencimento = date('Y-m-d', strtotime($this->dados->vencimento));
+		$this->dados = $dados;
+		$this->dados->vencimento = isset($this->dados->vencimento) ? date('Y-m-d', strtotime($this->dados->vencimento)) : null;
 
 		$this->cliente();
-		//$this->carne();
-		$this->validacao();
 	}
 
 	public function getResult(){
@@ -29,7 +27,9 @@ class Carne extends Read{
 		$campos = 'clientes.id, clientes.desconto, planos.valor, clientes.nome, clientes.rua, clientes.bairro, clientes.cep, clientes.numero';
 		parent::ExeRead('clientes inner join planos on clientes.plano = planos.id',
 		'WHERE clientes.id = :id', 'id=' . $this->dados->cliente_id, $campos);
-		$this->cliente = parent::getResult()[0];
+		foreach(parent::getResult() as $dados):
+			$this->cliente = $dados;
+		endforeach;
 	}
 
 	private function carne(){
@@ -42,7 +42,49 @@ class Carne extends Read{
 		$this->numero_documento = parent::getRowCount() ? parent::getResult()[$qtde - 1]->numero_documento + 1 : 1;
 	}
 
-	private function validacao(){
+	public function segunda_via(){		
+		$campos = 'MAX(numero) as numero_documento';
+		parent::ExeRead('carne', 'WHERE cliente_id = :cliente_id GROUP BY data',
+		'cliente_id=' . $this->dados->cliente_id, $campos);
+
+		$qtde = parent::getRowCount();
+
+		$this->qtde_carne = $qtde ? $qtde : 1;
+
+		parent::ExeRead('clientes inner join planos ');
+		$campos = 'clientes.id, clientes.desconto, planos.valor, clientes.nome, clientes.rua, clientes.bairro, clientes.cep, clientes.numero';
+		parent::ExeRead('clientes inner join planos on clientes.plano = planos.id',
+		'WHERE clientes.id = :id', 'id=' . $this->dados->cliente_id, $campos);
+		
+		$html = '<style>';
+			$html .= file_get_contents('../css/carne.css');
+		$html .= '</style>';
+
+		$boleto = file_get_contents('content/boleto.html');
+
+		foreach(parent::getResult() as $dados):
+			parent::ExeRead('carne', 'WHERE cliente_id = :cliente_id  and data = (SELECT data FROM carne WHERE Month(vencimento) = ' . date('n') . ') ORDER BY numero', 'cliente_id=' . $dados->id);
+			if(parent::getRowCount()):
+				foreach(parent::getResult() as $carne):
+
+					if($dados->numero >= 3 && ($dados->numero % 3) == 0):
+						$html .= '<br><br><br><br><br><br><br><br><br>';
+					endif;
+
+					$html .= $this->substituir($boleto, $dados, $carne->vencimento, $carne->numero);
+
+					$this->result = [ 'resposta' => true, 'mensagem' => $html ];
+				endforeach;
+				else:
+				$this->result = [ 'resposta' => false, 'mensagem' => 'Não existe carner gerado para esse cliente.' ];
+			endif;
+			
+		endforeach;
+		
+
+	}
+
+	public function validacao(){
 		$this->vencimento();
 		if($this->dados->vencimento <= $this->lastDate['vencimento']):
 				$this->result = [ 'resposta' => false, 'mensagem' => 'A data fornecida é menor ou igual que o último boleto já gerado ou seja menor que ' . date('d/m/Y', strtotime($this->lastDate['vencimento'])) . ', por favor coloque uma data com mês superior ao último carne do cliente.' ];
@@ -64,10 +106,10 @@ class Carne extends Read{
 				$vencimento = date('Y-m-d', strtotime($this->dados->vencimento . ' +' . $a . ' month'));			
 				
 				$collection = [
-					'cliente_id' => $this->dados->cliente_id,
-					'vencimento' => $vencimento,
-					'numero' => $this->numero_documento,
-					'data' => $this->dados->vencimento
+					'cliente_id' => addslashes(strip_tags(trim($this->dados->cliente_id))),
+					'vencimento' => addslashes(strip_tags(trim($vencimento))),
+					'numero' => addslashes(strip_tags(trim($this->numero_documento))),
+					'data' => addslashes(strip_tags(trim($this->dados->vencimento)))
 				];
 
 				if($a >= 3 && ($a % 3) == 0):
@@ -78,7 +120,8 @@ class Carne extends Read{
 
 				$create->ExeCreate('carne', $collection);
 				$this->numero_documento++;
-			endfor;			
+			endfor;	
+
 			$this->result = [ 'resposta' => true, 'mensagem' => $html ];
 		endif;
 	}
