@@ -11,7 +11,6 @@ app.controller('loginCtrl', function(http, $window, progresso){
 	
 
 	self.logar = function(dados){
-		console.log(dados);
 		progresso.start();	
 		dados.funcao = 'logar';
 
