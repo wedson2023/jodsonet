@@ -16,7 +16,6 @@ app.controller('loginCtrl', function(http, $window, progresso){
 		dados.funcao = 'logar';
 
 		http.acesso(dados).then(function(response){
-			console.log(response.data)
 			
 			if(response.data == 'null'){
 				alert('Login ou senha incorreta tente novamente!'); 
