@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: 15-Set-2017 às 16:56
+-- Generation Time: 01-Out-2017 às 11:47
 -- Versão do servidor: 5.7.19
 -- PHP Version: 5.6.31
 
@@ -25,6 +25,23 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Estrutura da tabela `carne`
+--
+
+DROP TABLE IF EXISTS `carne`;
+CREATE TABLE IF NOT EXISTS `carne` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `cliente_id` int(11) NOT NULL,
+  `vencimento` date NOT NULL,
+  `status` int(11) NOT NULL DEFAULT '0',
+  `numero` int(11) NOT NULL,
+  `data` date DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=127 DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura da tabela `clientes`
 --
 
@@ -36,7 +53,7 @@ CREATE TABLE IF NOT EXISTS `clientes` (
   `celular` varchar(20) NOT NULL,
   `cpf` varchar(11) NOT NULL,
   `plano` int(11) NOT NULL,
-  `desconto` float DEFAULT NULL,
+  `desconto` decimal(11,0) DEFAULT NULL,
   `cidade` varchar(30) NOT NULL,
   `cep` varchar(8) NOT NULL,
   `rua` varchar(50) NOT NULL,
@@ -44,26 +61,7 @@ CREATE TABLE IF NOT EXISTS `clientes` (
   `bairro` varchar(50) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
-
---
--- Extraindo dados da tabela `clientes`
---
-
-INSERT INTO `clientes` (`id`, `nome`, `apelido`, `celular`, `cpf`, `plano`, `desconto`, `cidade`, `cep`, `rua`, `numero`, `bairro`, `created_at`) VALUES
-(1, 'wedson', 'apelido', '88888888888', '99999999999', 1, 10, 'Agrestina', '55495000', 'rua', 79, 'bairro', '2017-09-13 20:23:00'),
-(2, 'nome', 'app', '99999999999', '00000009999', 1, 78, 'Agrestina', '55495000', 'rua', 89, 'bairro', '2017-09-13 20:26:27'),
-(3, 'teste', 'app', '88888888888', '99999999999', 1, 12, 'Agrestina', '55495000', 'rua', 90, 'centro', '2017-09-13 20:29:18'),
-(4, 'wedsib', 'apelido3', '88888888888', '99999999999', 4, 89, 'Agrestina', '55495000', 'kyc', 89, 'bairro', '2017-09-13 20:59:46'),
-(5, 'noe', 'aple', '99999999999', '00099999999', 3, 78, 'Agrestina', '55495000', 'rua', 8, 'centro', '2017-09-13 21:07:45'),
-(6, 'nome', 'aplelido', '77777777777', '88888888888', 1, 12, 'Agrestina', '55495000', 'lucas', 89, 'centro', '2017-09-13 21:08:24'),
-(7, 'nome', 'apelido', '23233333333', '88888888888', 1, 12, 'Agrestina', '55495000', 'rua', 8, 'centro', '2017-09-13 21:09:15'),
-(8, 'pro', 'ap', '88888888888', '99999999999', 2, 38, 'Agrestina', '55495000', 'rua', 89, 'centro', '2017-09-13 21:23:29'),
-(9, 'wedson', 'app', '99999999999', '88888888888', 1, 100, 'Agrestina', '55495000', 'rua', 89, 'centro', '2017-09-13 21:23:58'),
-(10, 'wedson', 'apleiidsfisdoif', '88888888888', '99999999999', 2, 60, 'Agrestina', '55495000', 'rua', 90, 'centro', '2017-09-14 12:59:35'),
-(11, 'teste', 'teste', '99999999999', '00000999999', 1, 12, 'Agrestina', '55495000', 'ra', 8, 'sdf', '2017-09-14 15:15:56'),
-(12, 'teste', 'teste', '88888888888', '99999999999', 2, 12, 'Agrestina', '55495000', 'rua', 78, 'centro', '2017-09-14 15:16:28'),
-(13, 'teste', 'teste', '88888888888', '99999999999', 1, 12, 'Agrestina', '55495000', 'rua', 89, 'centro', '2017-09-14 15:16:55');
+) ENGINE=MyISAM AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -96,21 +94,10 @@ INSERT INTO `login` (`id`, `nome`, `senha`, `token`) VALUES
 DROP TABLE IF EXISTS `planos`;
 CREATE TABLE IF NOT EXISTS `planos` (
   `id` int(5) NOT NULL AUTO_INCREMENT,
-  `nome` varchar(50) NOT NULL,
+  `plano` varchar(50) NOT NULL,
   `valor` float NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
-
---
--- Extraindo dados da tabela `planos`
---
-
-INSERT INTO `planos` (`id`, `nome`, `valor`) VALUES
-(1, 'Plano 1 mega', 35),
-(2, 'Plano 2 megas', 50),
-(3, 'Plano 4 megas', 60),
-(4, 'Plano 10 gigas', 100),
-(5, 'teste', 10);
+) ENGINE=MyISAM AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
