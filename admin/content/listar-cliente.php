@@ -14,11 +14,11 @@
 		</div>
 		<div id="clientes" class="clientes scroll">
 			<div class="body" ng-repeat="cliente in ctrl.clientes | filter : { nome : nome, id : id }">
-				<span class="capitalize nome" ng-bind="cliente.nome"></span>
-				<span class="capitalize cidade" ng-bind="cliente.cidade"></span>
-				<span class="capitalize telefone" ng-bind="cliente.celular"></span>
-				<span class="capitalize plano" ng-bind="cliente.plano"></span>
-				<span class="capitalize valor" ng-bind="cliente.valor"></span>				
+				<span class="capitalize nome" ng-bind="cliente.nome.substr(0,10)"></span>
+				<span class="capitalize cidade" ng-bind="cliente.cidade.substr(0,10)"></span>
+				<span class="capitalize telefone" ng-bind="cliente.celular.substr(0,15)"></span>
+				<span class="capitalize plano" ng-bind="cliente.plano.substr(0,10)"></span>
+				<span class="capitalize valor" ng-bind="cliente.valor.substr(0,7)"></span>				
 				<span class="capitalize down"><img class="icon" title="Detalhes" toque src="../imagens/down-black.png"></span>
 				<span class="capitalize via"><img class="icon" title="Emitir segunda vía" ng-click="ctrl.segunda_via(cliente)" src="../imagens/2via_black.png"></span>
 				<div class="conteiner">

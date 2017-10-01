@@ -91,4 +91,9 @@ section.listar .valor{  width: 20%; }
 section.listar .down{  width: 15%; }
 section.listar .via{  width: 15%; }
 
+div.listar_carne .nome { width: 33.33%; }
+div.listar_carne .vencimento { width: 33.33%; }
+div.listar_carne .status { width: 33.33%; }
+div.listar_carne .baixa { width: 100%; }
+
 }

@@ -5,7 +5,7 @@
 		</div>
 		<div id="clientes" class="clientes scroll">					
 			<div class="listar_carne" ng-repeat="carne in ctrl.carne | filter : { nome : nome, id : id }">
-				<span class="nome" ng-bind="carne.nome"></span>
+				<span class="nome" ng-bind="carne.nome.substr(0,10)"></span>
 				<span class="numero" ng-bind="carne.numero"></span>
 				<span class="vencimento" ng-bind="carne.vencimento | date : 'dd/MM/yyyy'"></span>
 				<span class="status" ng-class=" carne.status == 1 ? 'pago' : ( carne.status == 2 ? 'atrasado' : null)" ng-bind="carne.status | opcao"></span>

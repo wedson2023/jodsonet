@@ -3,7 +3,7 @@ app
 .factory('http', function($http){
 	return {
 		acesso : function(data){
-			return $http.post('http://wedsonwebdesigner.com.br/jodsonet/admin/processa.php', data);
+			return $http.post('http://localhost/jodsonet/admin/processa.php', data);
 		}
 	}			
 })
