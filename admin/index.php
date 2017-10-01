@@ -9,6 +9,7 @@
 	<title>Gerar Boletos</title>
 	<link rel="stylesheet" href="../css/animate.css">
 	<link rel="stylesheet" href="../css/boleto.css">
+	<link rel="stylesheet" href="../css/mobile.css">
 	<base href="/jodsonet/admin/" />
 </head>
 <body class="corpo" ng-controller="singleCtrl as ctrl">

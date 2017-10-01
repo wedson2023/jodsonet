@@ -1,0 +1,72 @@
+@media screen and (max-width:900px){
+
+.corpo { overflow: auto; }
+nav {width: 55px;}
+
+	/***************************
+	**** PÁGINA CADASTRO *****
+	***************************/
+
+section.conteiner{ margin: 3% 0 0 16.5%; width: 80%; }
+section.cadastro article { display: block; justify-content: none; }
+
+section.cadastro fieldset { width: 100%; margin-bottom: 5px;}
+section.cadastro div { display: block; justify-content: none; }
+section.cadastro .send { width: 100%; }
+.logo { display: none; }
+section.cadastro span#mensagem_cadastro_cliente { width: 100%; margin: 5px 0; display: none;} 
+
+
+	/***************************
+	***** LISTAR CLIENTES ******
+	***************************/
+
+section.listar div.clientes {  height: 350px; }
+section.listar input.nome { width: 65%;}
+section.listar input.id { width: 35%; }
+section.listar div.body span{ text-align: center; font-size: 0.9em; border: solid thin #f1f1f1; padding: 5px; color: #999; cursor: default; }
+section.listar div.body .icon { width: 20px; }
+
+section.listar .deletar{ padding: 10px; }
+section.listar .alterar{ padding: 10px; }
+section.listar .nome{  width: 55%; }
+section.listar .cidade{  display: none; }		
+section.listar .telefone{  display: none; }
+section.listar .plano{  display: none; }
+section.listar .valor{  width: 25%; }
+section.listar .down{  width: 10%; }
+section.listar .via{  width: 10%; }
+section.listar .icon{  width: 20px; }
+
+section.listar div.conteiner{ display: none; width: 100%; }
+section.listar .informacoes{ width: 100%; display: block; justify-content: none;}
+
+section.listar ul:not(:last-child){ width:  100%; padding: 0; }
+section.listar input[type=date]{ padding: 7px; }
+section.listar input[type=text]{ padding: 7px; }
+section.listar input[type=submit]{ padding: 7px;}
+
+div.carne span { font-size: 0.7em !important;}
+div.carne .numero { display: none; }
+div.carne .vencimento { width: 30%; }
+div.carne .status { width: 30%; }
+div.carne .excluir { width: 20%; }
+div.carne .baixa { width: 20%; }
+
+div.listar_carne span { padding: 7px !important;}
+div.listar_carne span { font-size: 0.7em;}
+div.listar_carne .nome { width: 25%; }
+div.listar_carne .numero { display: none; }
+div.listar_carne .vencimento { width: 25%; }
+div.listar_carne .status { width: 25%; }
+div.listar_carne .excluir { display: none; }
+div.listar_carne .baixa { width: 25%; }
+
+
+	/***************************
+	**** PÁGINA PLANOS *****
+	***************************/
+
+form#jan_planos{ width: 70%; margin-left: -35%; }
+form div.lista span.plano{ width: 85%; }
+form div.lista span.deletar{ width: 15%; }

@@ -4,3 +4,7 @@ form{ margin: 5% auto; width: 20%; border: solid thin #f1f1f1; padding: 10px; bo
 form input[type=text], input[type=password] { color: #666; width: 100%; padding: 15px; border: solid thin #f1f1f1; outline: none; margin-bottom: 10px;}
 form .send { padding: 15px; color: #fff; text-align: center; background: tomato; border: none; width: 100%; }
 form .logo { padding: 50px 0; width: 100%; }
+
+@media screen and (max-width:900px){
+	form{ margin: 10% auto; width: 80%;}	
+} 
