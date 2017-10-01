@@ -1,10 +1,7 @@
-app.controller('listClienteCtrl', function(http, clientes, $window, progresso){
+app.controller('listClienteCtrl', function(http, clientes, $window){
 	var self = this;
 
 	self.clientes = clientes.data;
-
-	progresso = progresso.create;
-	progresso.setColor('#15B9FF');
 
 	self.deletar = function(dados){
 		dados.funcao = 'deletar_cliente';
@@ -13,7 +10,6 @@ app.controller('listClienteCtrl', function(http, clientes, $window, progresso){
 			http.acesso(dados).then(function(response){
 				self.clientes.splice(self.clientes.indexOf(dados), 1);
 			}, function(err){
-				progresso.complete();
 				alert('Por favor verifique sua conexão com a internet ou tente novamente');
 			})					
 		}

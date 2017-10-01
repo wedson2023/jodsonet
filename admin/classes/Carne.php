@@ -20,7 +20,9 @@ class Carne extends Read{
 	private function vencimento(){
 		parent::ExeRead('carne', 'WHERE cliente_id = :cliente_id',
 		'cliente_id=' . $this->dados->cliente_id, 'MAX(vencimento) as vencimento');
-		$this->lastDate = [ 'vencimento' => parent::getResult()[0]->vencimento ];
+		if(parent::getRowCount()):
+			$this->lastDate = [ 'vencimento' => parent::getResult()[0]->vencimento ];
+		endif;
 	}
 
 	private function cliente(){
@@ -88,7 +90,7 @@ class Carne extends Read{
 		$this->vencimento();
 		if($this->dados->vencimento <= $this->lastDate['vencimento']):
 				$this->result = [ 'resposta' => false, 'mensagem' => 'A data fornecida é menor ou igual que o último boleto já gerado ou seja menor que ' . date('d/m/Y', strtotime($this->lastDate['vencimento'])) . ', por favor coloque uma data com mês superior ao último carne do cliente.' ];
-			elseif(date('m', strtotime($this->dados->vencimento)) <= date('m', strtotime($this->lastDate['vencimento']))):
+			elseif(isset($this->lastDate['vencimento']) && date('m', strtotime($this->dados->vencimento)) <= date('m', strtotime($this->lastDate['vencimento']))):
 				$this->result = [ 'resposta' => false, 'mensagem' => 'Já existe um carne com vencimento para esse mês, coloque outra data ou remova o carne correpondente ao mês que vc deseja gerar um novo boleto, data do último carne foi ' . date('d/m/Y', strtotime($this->lastDate['vencimento'])) . '.' ];
 			else:
 			$this->carne();

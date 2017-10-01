@@ -1,8 +1,5 @@
-app.controller('singleCtrl', function($window, http, $timeout, progresso){
+app.controller('singleCtrl', function($window, http, $timeout){
 	var self = this;
-
-	progresso = progresso.create;
-	progresso.setColor('#15B9FF');
 
 	self.jan_planos = function(){
 		angular.element(document.getElementById('tela')).fadeToggle(); 
@@ -32,10 +29,8 @@ app.controller('singleCtrl', function($window, http, $timeout, progresso){
 	};
 
 	self.logout = function(){
-		progresso.start();
 		http.acesso({ funcao : 'sair' }).then(function(response){
 			if(response.data){
-				progresso.complete();
 				$window.location.href = '../';
 			}
 		}, function(err){
@@ -44,10 +39,8 @@ app.controller('singleCtrl', function($window, http, $timeout, progresso){
 	}
 
 	self.cadastrar = function(dados){
-		progresso.start();	
 		dados.funcao = 'cadastrar_planos';
 		http.acesso(dados).then(function(response){
-			progresso.complete();
 			http.acesso({ funcao : 'ler_planos' }).then(function(response){
 				self.planos = response.data;
 			})
@@ -56,7 +49,6 @@ app.controller('singleCtrl', function($window, http, $timeout, progresso){
 				angular.element(document.getElementById('mensagem_cadastro_planos')).fadeOut();	
 				}, 3500);			
 		}, function(err){
-			progresso.complete();
 			alert('Por favor verifique sua conexão com a internet ou tente novamente');
 		})
 	}
