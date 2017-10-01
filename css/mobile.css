@@ -67,6 +67,28 @@ div.listar_carne .baixa { width: 25%; }
 	**** PÁGINA PLANOS *****
 	***************************/
 
-form#jan_planos{ width: 70%; margin-left: -35%; }
+form#jan_planos{ width: 70%; margin-left: -28%; }
 form div.lista span.plano{ width: 85%; }
 form div.lista span.deletar{ width: 15%; }
+
+}
+
+@media screen and (max-width:380px){
+
+	/***************************
+	**** PÁGINA CADASTRO *****
+	***************************/
+
+section.conteiner{ margin: 3% 0 0 19%; width: 78%; }
+
+
+	/***************************
+	***** LISTAR CLIENTES ******
+	***************************/
+
+section.listar .nome{  width: 50%; }
+section.listar .valor{  width: 20%; }
+section.listar .down{  width: 15%; }
+section.listar .via{  width: 15%; }
+
+}
