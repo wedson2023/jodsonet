@@ -32,7 +32,7 @@ switch ($dados->funcao) {
 		$read->ExeRead('clientes inner join planos on clientes.plano = planos.id', null, null, $campos);
 		if($read->getRowCount()):
 			foreach($read->getResult() as $dados):
-				$read->ExeRead('carne', 'WHERE cliente_id = :cliente_id', 'cliente_id=' . $dados->id );
+				$read->ExeRead('carne', 'WHERE cliente_id = :cliente_id ORDER BY numero DESC', 'cliente_id=' . $dados->id );
 				if($read->getRowCount()):
 					$dados->carne = $read->getResult();
 				endif;
@@ -78,7 +78,7 @@ switch ($dados->funcao) {
 	case 'ler_carne':
 		$read = new Read;
 		$campos = 'carne.id, clientes.nome, carne.numero, carne.vencimento, carne.status';
-		$read->ExeRead('carne inner join clientes on carne.cliente_id = clientes.id ORDER BY status DESC', null, null, $campos);
+		$read->ExeRead('carne inner join clientes on carne.cliente_id = clientes.id ORDER BY status DESC, carne.numero DESC', null, null, $campos);
 		print json_encode($read->getResult());	
 		break;
 

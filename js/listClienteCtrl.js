@@ -56,6 +56,7 @@ app.controller('listClienteCtrl', function(http, clientes, $window){
 		dados.cliente_id = dados.id;
 		http.acesso(dados).then(function(response){		
 			if(!response.data.resposta){ 
+				console.log(response);
 				alert(response.data.mensagem);
 				}else{				
 				impressao = window.open('about:blank');

@@ -26,7 +26,7 @@ class Carne extends Read{
 	}
 
 	private function cliente(){
-		$campos = 'clientes.id, clientes.desconto, planos.valor, clientes.nome, clientes.rua, clientes.bairro, clientes.cep, clientes.numero';
+		$campos = 'clientes.id, clientes.desconto, planos.valor, planos.desc, clientes.nome, clientes.rua, clientes.bairro, clientes.cep, clientes.numero';
 		parent::ExeRead('clientes inner join planos on clientes.plano = planos.id',
 		'WHERE clientes.id = :id', 'id=' . $this->dados->cliente_id, $campos);
 		foreach(parent::getResult() as $dados):
@@ -54,7 +54,7 @@ class Carne extends Read{
 		$this->qtde_carne = $qtde ? $qtde : 1;
 
 		parent::ExeRead('clientes inner join planos ');
-		$campos = 'clientes.id, clientes.desconto, planos.valor, clientes.nome, clientes.rua, clientes.bairro, clientes.cep, clientes.numero';
+		$campos = 'clientes.id, clientes.desconto, planos.valor, planos.desc,  clientes.nome, clientes.rua, clientes.bairro, clientes.cep, clientes.numero';
 		parent::ExeRead('clientes inner join planos on clientes.plano = planos.id',
 		'WHERE clientes.id = :id', 'id=' . $this->dados->cliente_id, $campos);
 		
@@ -65,7 +65,7 @@ class Carne extends Read{
 		$boleto = file_get_contents('content/boleto.html');
 
 		foreach(parent::getResult() as $dados):
-			parent::ExeRead('carne', 'WHERE cliente_id = :cliente_id  and data = (SELECT data FROM carne WHERE Month(vencimento) = ' . date('n') . ') ORDER BY numero', 'cliente_id=' . $dados->id);
+			parent::ExeRead('carne', 'WHERE cliente_id = :cliente_id and data = (SELECT data FROM carne WHERE cliente_id = ' . $dados->id . ' and  Month(vencimento) = ' . date('n') . ' and Year(vencimento) = ' . date('Y') . ') ORDER BY numero', 'cliente_id=' . $dados->id);
 			if(parent::getRowCount()):
 				foreach(parent::getResult() as $carne):
 
@@ -78,7 +78,22 @@ class Carne extends Read{
 					$this->result = [ 'resposta' => true, 'mensagem' => $html ];
 				endforeach;
 				else:
-				$this->result = [ 'resposta' => false, 'mensagem' => 'Não existe carner gerado para esse cliente.' ];
+				parent::ExeRead('carne', 'WHERE cliente_id = :cliente_id ORDER BY numero DESC', 'cliente_id=' . $dados->id);
+				if(parent::getRowCount()):
+					
+					foreach(parent::getResult() as $carne):
+
+						if($carne->numero >= 3 && ($carne->numero % 3) == 0):
+							$html .= '<br><br><br><br><br><br><br><br><br>';
+						endif;
+
+						$html .= $this->substituir($boleto, $dados, $carne->vencimento, $carne->numero);
+
+						$this->result = [ 'resposta' => true, 'mensagem' => $html ];
+					endforeach;
+				else:
+					$this->result = [ 'resposta' => false, 'mensagem' => 'Não existe carner gerado para esse cliente.' ];
+				endif;
 			endif;
 			
 		endforeach;
@@ -131,7 +146,7 @@ class Carne extends Read{
 	private function substituir($html, $dados, $vencimento, $numero_documento){
 		$procurar = [ 
 			'#numero#', '#digito#', '#numero do documento#', '#vencimento#', '#valor documento#', "#desconto#", '#nome#', '#rua#',
-			'#numero#','#bairro#', '#cep#', '#data do documento#', '#numero do documento#' ];
+			'#numero_casa#','#bairro#', '#cep#', '#data do documento#', '#numero do documento#', '#desc#' ];
 		$substituir = [
 			$dados->id,
 			$this->qtde_carne,
@@ -145,7 +160,8 @@ class Carne extends Read{
 			$dados->bairro,
 			$dados->cep,
 			date('d/m/Y'),
-			$numero_documento
+			$numero_documento,
+			number_format($dados->desc, 2, ',', '.')
 		];
 		return str_replace($procurar, $substituir, $html);
 	}

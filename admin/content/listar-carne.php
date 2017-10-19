@@ -1,10 +1,10 @@
 	<section class="listar conteiner animated bounceInUp">
 		<div class="pesquisar">
 			<input type="search" class="nome" ng-model="nome" placeholder="Digite um nome" />
-			<input type="search" class="id" ng-model="id" placeholder="Digite um id" />
+			<input type="search" class="id" ng-model="numero" placeholder="Digite o número" />
 		</div>
 		<div id="clientes" class="clientes scroll">					
-			<div class="listar_carne" ng-repeat="carne in ctrl.carne | filter : { nome : nome, id : id }">
+			<div class="listar_carne" ng-repeat="carne in ctrl.carne | filter : { nome : nome, numero : numero }">
 				<span class="nome" ng-bind="carne.nome.substr(0,10)"></span>
 				<span class="numero" ng-bind="carne.numero"></span>
 				<span class="vencimento" ng-bind="carne.vencimento | date : 'dd/MM/yyyy'"></span>
