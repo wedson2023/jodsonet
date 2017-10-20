@@ -67,25 +67,30 @@ class Carne extends Read{
 		foreach(parent::getResult() as $dados):
 			parent::ExeRead('carne', 'WHERE cliente_id = :cliente_id and data = (SELECT data FROM carne WHERE cliente_id = ' . $dados->id . ' and  Month(vencimento) = ' . date('n') . ' and Year(vencimento) = ' . date('Y') . ') ORDER BY numero', 'cliente_id=' . $dados->id);
 			if(parent::getRowCount()):
+				$count = 0;
 				foreach(parent::getResult() as $carne):
-
-					if($dados->numero >= 3 && ($dados->numero % 3) == 0):
+					
+					if($count >= 3 && ($count % 3) == 0):
 						$html .= '<br><br><br><br><br><br><br><br><br>';
 					endif;
+
+					$count++;
 
 					$html .= $this->substituir($boleto, $dados, $carne->vencimento, $carne->numero);
 
 					$this->result = [ 'resposta' => true, 'mensagem' => $html ];
 				endforeach;
 				else:
-				parent::ExeRead('carne', 'WHERE cliente_id = :cliente_id ORDER BY numero DESC', 'cliente_id=' . $dados->id);
+				parent::ExeRead('carne', 'WHERE cliente_id = :cliente_id', 'cliente_id=' . $dados->id);
 				if(parent::getRowCount()):
-					
+					$count = 0;
 					foreach(parent::getResult() as $carne):
 
-						if($carne->numero >= 3 && ($carne->numero % 3) == 0):
+						if($count >= 3 && ($count % 3) == 0):
 							$html .= '<br><br><br><br><br><br><br><br><br>';
 						endif;
+
+						$count++;
 
 						$html .= $this->substituir($boleto, $dados, $carne->vencimento, $carne->numero);
 

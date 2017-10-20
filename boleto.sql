@@ -96,6 +96,7 @@ CREATE TABLE IF NOT EXISTS `planos` (
   `id` int(5) NOT NULL AUTO_INCREMENT,
   `plano` varchar(50) NOT NULL,
   `valor` float NOT NULL,
+  'desc' float NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
 COMMIT;
