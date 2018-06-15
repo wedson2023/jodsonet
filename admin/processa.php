@@ -75,10 +75,24 @@ switch ($dados->funcao) {
 	******** CARNE ********
 	***********************/
 
+	case 'listar_por_data':
+
+		$read = new Read;
+		$campos = 'carne.id, clientes.nome, carne.numero, carne.vencimento, carne.status';
+
+		if(isset($dados->status) and !is_null($dados->status)):
+			$read->ExeRead('carne inner join clientes on carne.cliente_id = clientes.id', 'WHERE carne.vencimento BETWEEN "' . $dados->inicio . '" and "' . $dados->fim . '" AND status = :status ORDER BY status DESC, carne.numero DESC', 'status=' . $dados->status, $campos);			
+		else:
+			$read->ExeRead('carne inner join clientes on carne.cliente_id = clientes.id', 'WHERE carne.vencimento BETWEEN "' . $dados->inicio . '" and "' . $dados->fim . '" ORDER BY status DESC, carne.numero DESC', null, $campos);
+		endif;
+		
+		print json_encode($read->getResult());	
+		break;
+
 	case 'ler_carne':
 		$read = new Read;
 		$campos = 'carne.id, clientes.nome, carne.numero, carne.vencimento, carne.status';
-		$read->ExeRead('carne inner join clientes on carne.cliente_id = clientes.id ORDER BY status DESC, carne.numero DESC', null, null, $campos);
+		$read->ExeRead('carne inner join clientes on carne.cliente_id = clientes.id', 'WHERE status != :status ORDER BY status DESC, carne.numero DESC', 'status=0', $campos);
 		print json_encode($read->getResult());	
 		break;
 

@@ -52,10 +52,10 @@ form div.lista span.deletar:hover{ border: solid thin red; background: red; }
 	***** LISTAR CLIENTES ******
 	***************************/
 
-section.listar div.clientes {  height: 250px; overflow-y: auto; overflow-x: hidden; }
-section.listar div.pesquisar { display: flex; flex-wrap: wrap; }
-section.listar input.nome { color: #666; width: 80%; padding: 15px; border: solid thin #f1f1f1; outline: none; margin-bottom: 10px;}
-section.listar input.id { color: #666; width: 20%; padding: 15px; border: solid thin #f1f1f1; outline: none; margin-bottom: 10px;}
+section.cliente div.clientes {  height: 250px; overflow-y: auto; overflow-x: hidden; }
+section.cliente div.pesquisar { display: flex; flex-wrap: wrap; }
+section.cliente input.nome { color: #666; width: 80%; padding: 15px; border: solid thin #f1f1f1; outline: none; margin-bottom: 10px;}
+section.cliente input.id { color: #666; width: 20%; padding: 15px; border: solid thin #f1f1f1; outline: none; margin-bottom: 10px;}
 section.listar div.header{ display: flex; flex-wrap: wrap; width: 100%; border: solid thin #f1f1f1; }
 section.listar div.header span{ text-align: center; font-size: 0.9em; border: solid thin #f1f1f1; padding: 5px; cursor: pointer; background: #4b7e9d; color: #fff;}
 section.listar div.body { display: flex; flex-wrap: wrap; width: 100%; border: solid thin #f1f1f1;}
@@ -83,6 +83,22 @@ section.listar input{ width: 50%; }
 section.listar input[type=date]{ width: 33%; margin-right: 5px; color: #999; border: solid thin #ccc; outline: none; padding: 3px; }
 section.listar input[type=text]{ width: 33%; margin-right: 5px; color: #999; border: solid thin #ccc; outline: none; padding: 3px; }
 section.listar input[type=submit]{ width: 33%; color: #fff; background: tomato; border: none; outline: none; padding: 3px;}
+
+	/***************************
+	***** LISTAR CARNER ******
+	***************************/
+
+section.carne div.pesquisar div { display: flex; justify-content: space-between; width: 40%; }
+section.carne form{ width: 59%; }
+section.carne fieldset{ border: solid thin #f1f1f1; padding: 8px; width: 100%; justify-content: space-between; }
+section.carne input[type=date], section.carne select { border: solid thin #f1f1f1; outline: none; width: 25%; padding: 3px 5px; color: #666666;  }
+section.carne select { padding: 5px; }
+section.carne input[type=submit] {  padding: 6px; width: 15%; color: #f1f1f1; background: orange; outline: none; border: none; cursor: pointer; }
+
+section.carne div.clientes {  height: 250px; overflow-y: auto; overflow-x: hidden; }
+section.carne div.pesquisar { display: flex; justify-content: space-between; }
+section.carne input.nome { color: #666; width: 50%; padding: 15px; border: solid thin #f1f1f1; outline: none; margin-bottom: 10px;}
+section.carne input.id { color: #666; width: 50%; padding: 15px; border: solid thin #f1f1f1; outline: none; margin-bottom: 10px;}
 
 div.carne { margin-top: 5px; display: flex; flex-wrap: wrap; width: 100%;}
 div.carne span { padding: 5px; border: solid thin #f1f1f1; color: #ccc; text-align: center; margin-bottom: 3px;}

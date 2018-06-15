@@ -1,4 +1,4 @@
-	<section class="listar conteiner animated bounceInUp">
+	<section class="listar cliente conteiner animated bounceInUp">
 		<div class="pesquisar">
 			<input type="search" class="nome" ng-model="nome" placeholder="Digite um nome" />
 			<input type="search" class="id" ng-model="id" placeholder="Digite um id" />
@@ -30,6 +30,7 @@
 							<li><strong>CPF:</strong> <p class="capitalize" ng-bind="cliente.cpf"></p></li>
 							<li><strong>Plano:</strong> <p class="capitalize" ng-bind="cliente.plano"></p></li>
 							<li><strong>Desconto:</strong> <p class="capitalize" ng-bind="cliente.desconto"></p></li>
+							<li><strong>Id:</strong> <p class="capitalize" ng-bind="cliente.id"></p></li>
 						</ul>
 						<ul>					
 							<li><strong>Cidade:</strong> <p class="capitalize" ng-bind="cliente.cidade"></p></li>

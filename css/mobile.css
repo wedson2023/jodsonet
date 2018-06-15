@@ -53,6 +53,10 @@ div.carne .status { width: 30%; }
 div.carne .excluir { width: 20%; }
 div.carne .baixa { width: 20%; }
 
+section.carne div.pesquisar { flex-direction: column; }
+section.carne div.pesquisar div{ width: 100%; }
+section.carne form{ width: 100%; }
+
 div.listar_carne span { padding: 7px !important;}
 div.listar_carne span { font-size: 0.7em;}
 div.listar_carne .nome { width: 25%; }
@@ -86,6 +90,7 @@ section.conteiner{ margin: 3% 0 0 19%; width: 78%; }
 	***** LISTAR CLIENTES ******
 	***************************/
 
+
 section.listar .nome{  width: 50%; }
 section.listar .valor{  width: 20%; }
 section.listar .down{  width: 15%; }
@@ -95,5 +100,4 @@ div.listar_carne .nome { width: 33.33%; }
 div.listar_carne .vencimento { width: 33.33%; }
 div.listar_carne .status { width: 33.33%; }
 div.listar_carne .baixa { width: 100%; }
-
 }

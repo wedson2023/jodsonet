@@ -1,4 +1,4 @@
-app.controller('listCarneCtrl', function(http,  carne){
+app.controller('listCarneCtrl', function(http, carne, $filter, progresso){
 	var self = this;
 
 	self.carne = carne.data;
@@ -11,6 +11,15 @@ app.controller('listCarneCtrl', function(http,  carne){
 				self.carne.splice(self.carne.indexOf(dados), 1);
 			})
 		}
+	}
+
+	self.listar_carne = function(dados){
+		var inicio = $filter('date')(dados.inicio, 'yyyy-MM-dd');
+		var fim = $filter('date')(dados.fim, 'yyyy-MM-dd');
+		var funcao = 'listar_por_data';
+		http.acesso({ inicio : inicio, fim : fim, funcao : funcao, status : dados.status }).then(function(response){
+			self.carne = response.data;
+		})
 	}
 
 	self.dar_baixa = function(dados){		

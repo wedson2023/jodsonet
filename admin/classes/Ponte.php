@@ -1,9 +1,9 @@
 <?php
 class Ponte {
 
-    private static $Host = 'localhost';
+    private static $Host = '104.236.95.250';
     private static $User = 'root';
-    private static $Pass = '';
+    private static $Pass = '101514we';
     private static $Dbsa = 'boleto';
 
     private static $Connect = null;
